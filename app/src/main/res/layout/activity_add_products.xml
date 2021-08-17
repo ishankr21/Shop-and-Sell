@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.A.AddProducts"
+    android:orientation="vertical"
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black"
+        app:title="Add Product"
+        android:id="@+id/AddProductsToolbar"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:background="#A48989"
+            android:id="@+id/productImage"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            android:layout_gravity="end|bottom"
+            android:padding="20dp"
+            android:id="@+id/addPhotoButton"
+            />
+
+
+    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/EdProductTitleLayout"
+
+        >
+    <com.example.shopandsell.utli.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:layout_margin="2dp"
+        android:hint="Product Title"
+        android:inputType="text"
+        android:id="@+id/EdProductTitle"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/EdProductPriceLayout"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Enter The Price in Rs."
+            android:inputType="numberDecimal"
+            android:id="@+id/EdProductPrice"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+
+        android:layout_marginTop="15dp"
+        android:id="@+id/EdProductDescriptionLayout"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Product Description"
+            android:inputType="textMultiLine"
+            android:id="@+id/EdProductDescription"
+
+            android:minLines="3"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/EdProductQuantityLayout"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Product Quantity"
+            android:inputType="number"
+            android:id="@+id/EdProductQuantity"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="#EE7926"
+        android:layout_margin="15dp"
+        android:id="@+id/btnSubmitProduct"
+        />
+</LinearLayout>

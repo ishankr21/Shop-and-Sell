@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "562710410273",
+    "project_id": "shop-and-sell-36b2c",
+    "storage_bucket": "shop-and-sell-36b2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562710410273:android:c5b07685822fb1a56a1f60",
+        "android_client_info": {
+          "package_name": "com.example.shopandsell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562710410273-cjhbgvh86onu9nkdtsi6obn90anm6no7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopandsell",
+            "certificate_hash": "efb7f0ccda52e606461cf2926c3edc06904dcdf0"
+          }
+        },
+        {
+          "client_id": "562710410273-1j6nk30s8pdr0kt8f89a8p6aud03jmhp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK7TtjCCEzXOp9XZyNtHMvODubSDuNVRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562710410273-1j6nk30s8pdr0kt8f89a8p6aud03jmhp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

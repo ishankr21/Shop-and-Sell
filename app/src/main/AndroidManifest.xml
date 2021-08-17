@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.shopandsell">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ShopAndSell">
+        <activity android:name=".UI.A.SoldProductDetailsActivity"
+            android:theme="@style/Theme.ShopAndSell2"
+            />
+        <activity
+            android:name=".UI.A.OrderDetailActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.CheckoutActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.AddEditAddressActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.AddressActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.CartActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.ViewDashBoardItem"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.ProductProfileActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.AddProducts"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.SettingsActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity android:name=".UI.A.DashBoardActivity" />
+        <activity
+            android:name=".UI.A.UserProflieActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.ForgotPasswordActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity android:name=".UI.A.BaseActivity" />
+        <activity
+            android:name=".UI.A.RegisterActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity android:name=".UI.A.LoginActivity" />
+        <activity
+            android:name=".UI.A.SplashScreen"
+            android:theme="@style/Theme.ShopAndSell2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.A.MainActivity" />
+    </application>
+
+</manifest>

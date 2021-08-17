@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.A.RegisterActivity">
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black"
+        app:title="Create Account"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/CreateAccountToolbar"/>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/CreateAccountToolbar"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/LayoutFirstName"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="First Name"
+            android:inputType="text"
+            android:id="@+id/edRegisterFirstName"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutFirstName"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/LayoutSecondName"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Second Name"
+            android:inputType="text"
+            android:id="@+id/edRegisterSecondName"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutSecondName"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/LayoutEmailId"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
+            android:id="@+id/edRegisterEmailId"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutEmailId"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        app:passwordToggleEnabled="true"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:id="@+id/LayoutPassword"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:id="@+id/edRegisterPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutPassword"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        app:passwordToggleEnabled="true"
+        android:id="@+id/LayoutConfirmPassword"
+
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:id="@+id/edRegisterConformPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LayoutConfirmPassword"
+        android:id="@+id/ChecboxLayout"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbTermsAndConditions"
+
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I Agree To The "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_conditions"
+
+            />
+
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ChecboxLayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Register"
+        android:layout_marginTop="35dp"
+        android:textSize="15sp"
+        android:id="@+id/btnRegister"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already registered? Login Here."
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/txtLoginHere"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

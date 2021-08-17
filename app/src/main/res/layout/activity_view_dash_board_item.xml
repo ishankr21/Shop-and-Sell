@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.A.ViewDashBoardItem"
+    android:orientation="vertical"
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black"
+        app:title="Product Details"
+        android:id="@+id/DashBoardItemToolbar"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:background="#A48989"
+            android:id="@+id/DashBoardItemProductImage"
+            />
+
+    </FrameLayout>
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="Product Title"
+         android:textAlignment="center"
+         android:textSize="25sp"
+         android:textColor="@color/black"
+         android:textStyle="bold"
+         android:layout_margin="15dp"
+         android:id="@+id/ViewItemProductTitle"
+         android:background="@drawable/box2"
+         android:padding="5dp"
+         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Price"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_margin="15dp"
+        android:id="@+id/ViewItemProductPrice"
+        android:background="@drawable/box2"
+        android:padding="5dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Description"
+        android:background="@drawable/box2"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:minLines="3"
+        android:textColor="@color/black"
+
+        android:layout_margin="15dp"
+        android:id="@+id/ViewItemProductDesciption"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantity Available"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/box2"
+        android:padding="5dp"
+        android:layout_margin="15dp"
+        android:id="@+id/ViewItemProductQuantity"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddToCart"
+        android:text="Add To Cart"
+        android:layout_margin="15dp"
+        android:backgroundTint="#C86969"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnGoToCart"
+        android:text="Go to Cart"
+        android:visibility="gone"
+        android:layout_margin="15dp"
+        android:backgroundTint="#C86969"
+        />
+
+</LinearLayout>

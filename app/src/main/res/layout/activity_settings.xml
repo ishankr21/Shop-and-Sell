@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.A.SettingsActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black"
+        app:title="Settings"
+
+        android:id="@+id/SettingsToolbar"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/person_placeholder"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/userProfileImage"
+
+        android:background="@drawable/corners_cureved_img"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:textSize="15sp"
+        android:background="@drawable/box3"
+        android:padding="10dp"
+        android:id="@+id/SettingsbtnEdit"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:background="@drawable/box3"
+            android:layout_margin="15dp"
+            android:textAlignment="center"
+            android:text="NAME"
+            android:id="@+id/settingTextViewName"
+            android:textSize="25sp"
+            />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:background="@drawable/box3"
+        android:layout_margin="15dp"
+        android:textAlignment="center"
+        android:text="EmailID"
+        android:id="@+id/settingTextViewEmailID"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:background="@drawable/box3"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+
+        android:textAlignment="center"
+        android:text="Mobile Number"
+        android:id="@+id/settingTextViewMobileNumber"
+        android:textSize="20sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/box3"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Addresses"
+            android:textSize="25sp"
+            android:layout_weight="3"
+            android:id="@+id/selectAddresses"
+            android:textAlignment="center"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+           android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        android:id="@+id/btnLOGOUT"
+        android:backgroundTint="#EE7926"
+        android:layout_margin="25dp"
+        />
+
+
+</LinearLayout>

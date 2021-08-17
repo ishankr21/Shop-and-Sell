@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.A.UserProflieActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black"
+        app:title="User Profile"
+
+        android:id="@+id/UserProfileToolbar"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/person_placeholder"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/userProfileImage"
+        android:background="@drawable/corners_cureved_img"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        >
+    <com.example.shopandsell.utli.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:layout_margin="2dp"
+        android:hint="First Name"
+        android:inputType="text"
+        android:id="@+id/userProfileEdFirstName"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Second Name"
+            android:inputType="text"
+            android:id="@+id/userProfileEdSecondName"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Email ID"
+            android:inputType="number"
+            android:id="@+id/userProfileEdEmailID"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        >
+        <com.example.shopandsell.utli.MyEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_margin="2dp"
+            android:hint="Mobile Number"
+            android:inputType="text"
+            android:id="@+id/userProfileEdMobileNumber"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        >
+        <RadioButton
+            android:layout_width="0dp"
+            android:id="@+id/rbMale"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@drawable/gender_tab_layout_font_color_selector"
+            android:checked="true"
+            android:button="@null"
+            android:text="MALE"
+            android:background="@drawable/gender_tab_layout"
+            />
+        <RadioButton
+            android:layout_width="0dp"
+            android:id="@+id/rbFemale"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@drawable/gender_tab_layout_font_color_selector"
+            android:checked="false"
+            android:button="@null"
+            android:text="FEMALE"
+            android:background="@drawable/gender_tab_layout"
+            />
+
+    </RadioGroup>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:id="@+id/btnSaveUserDetails"
+        android:backgroundTint="#EE7926"
+        android:layout_margin="25dp"
+        />
+</LinearLayout>
