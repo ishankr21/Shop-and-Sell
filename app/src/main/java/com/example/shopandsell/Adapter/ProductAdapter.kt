@@ -1,5 +1,6 @@
 package com.example.shopandsell.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class ProductAdapter(var context: Context,var productList:ArrayList<Product>,var
          )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val product=productList[position]
         if(holder is ProductViewHolder)
@@ -34,6 +36,8 @@ class ProductAdapter(var context: Context,var productList:ArrayList<Product>,var
             GlideLoadImage(context).loadProductPicture(product.image,holder.productImage)
             holder.productName.text=product.title
             holder.productPrice.text="Rs."+product.price
+            holder.category.text="Category : "+product.category
+
             holder.itemproductlayout.setOnClickListener {
                 val intent= Intent(context,ProductProfileActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_DETAILS,product)
@@ -56,6 +60,7 @@ class ProductViewHolder(view: View):RecyclerView.ViewHolder(view){
     var productImage: ImageView =view.findViewById(R.id.productitemimage)
     var productName: TextView =view.findViewById(R.id.productitemtitle)
     var productPrice: TextView =view.findViewById(R.id.productitemprice)
+    var category:TextView=view.findViewById(R.id.productitemcategory)
     var itemproductlayout:ConstraintLayout=view.findViewById(R.id.itemProductLayout)
     var btnDelete:ImageView=view.findViewById(R.id.btnDeleteProduct)
 

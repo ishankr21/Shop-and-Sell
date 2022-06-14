@@ -12,12 +12,15 @@ import com.example.shopandsell.UI.Fragments.DashBoardFragment
 import com.example.shopandsell.UI.Fragments.OrdersFragment
 import com.example.shopandsell.UI.Fragments.ProductsFragment
 import com.example.shopandsell.UI.Fragments.SoldProductsFragment
+import com.example.shopandsell.database.Database
 import com.example.shopandsell.utli.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class FirestoreClass {
 
@@ -179,7 +182,9 @@ class FirestoreClass {
             .document()
             .set(addToCart, SetOptions.merge())  //updating not replacing
             .addOnSuccessListener {
+
                 activity.addToCartSuccess()
+
             }
             .addOnFailureListener {
                 e->
@@ -368,6 +373,9 @@ class FirestoreClass {
                     {
                         activity.successCartItemsList(cartItemsList)
                     }
+                    is ViewDashBoardItem->{
+                        activity.afterGettingCartList(cartItemsList)
+                    }
                 }
             }
             .addOnFailureListener {
@@ -395,7 +403,7 @@ class FirestoreClass {
             .whereEqualTo(Constants.USER_ID,getCurrentUserID())//allows us to get product of the current user
             .get()
             .addOnSuccessListener { document->
-                var addressItemsList:ArrayList<Address> = ArrayList()
+                val addressItemsList:ArrayList<Address> = ArrayList()
                 for(i in document.documents)
                 {
                     var item=i.toObject(Address::class.java)
@@ -531,6 +539,12 @@ class FirestoreClass {
                 {
                     is CartActivity ->
                     {
+                        runBlocking {
+                            val job = this.async {
+                                Database.initDatabase(context).cartDao.deleteFromCart(cartItemId)
+                            }
+                            job.await()
+                        }
                         context.itemRemovedSuccess()
                     }
                 }
@@ -633,6 +647,12 @@ class FirestoreClass {
             .document()
             .set(orderInfo, SetOptions.merge())  //setdata and merge data,we can merge data later on
             .addOnSuccessListener {
+                runBlocking {
+                    val job = this.async {
+                        Database.initDatabase(activity).cartDao.deleteAll()
+                    }
+                    job.await()
+                }
                 activity.orderUploadSuccess()
             }
             .addOnFailureListener { e->
@@ -666,7 +686,8 @@ class FirestoreClass {
                 order.sub_total_amount,
                 order.shipping_charge,
                 order.total_amount,
-                order.address
+                order.address,
+                category = cart.category
             )
             val documentRefence = mFirestore.collection(Constants.SOLD_PRODUCTS)
                 .document(cart.product_id)

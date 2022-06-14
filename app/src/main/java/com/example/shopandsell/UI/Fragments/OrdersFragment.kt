@@ -1,6 +1,7 @@
 package com.example.shopandsell.UI.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,7 @@ class OrdersFragment : BaseFragment() {
         hideProgressBar()
         if(ordersList.size>0)
         {
+
             binding.ordersFragmentTextView.visibility=View.GONE
             binding.ordersFragmentRecyclerView.visibility=View.VISIBLE
             binding.ordersFragmentRecyclerView.layoutManager= LinearLayoutManager(activity)

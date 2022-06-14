@@ -5,6 +5,7 @@
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Shopping Cart"
         app:showAsAction="always"
+        app:actionLayout="@layout/cart_action_item"
         />
 <item  android:id="@+id/action_settings"
     android:icon="@drawable/ic_baseline_settings_24"

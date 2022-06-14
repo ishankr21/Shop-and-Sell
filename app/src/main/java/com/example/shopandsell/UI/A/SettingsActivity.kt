@@ -44,7 +44,7 @@ class SettingsActivity : BaseActivity(){
             intent.putExtra(Constants.EXTRA_USER_DETAILS,userDetails)
             startActivity(intent)
         }
-        binding.selectAddresses.setOnClickListener {
+        binding.llAddresses.setOnClickListener {
             val intent=Intent(this,AddressActivity::class.java)
 
             startActivity(intent)

@@ -7,6 +7,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -25,12 +29,15 @@ class AddProducts : BaseActivity() {
     private lateinit var binding: ActivityAddProductsBinding
     var SelectedImageURI: Uri?=null
     var imageUrl:String=""
+    var spinnerArrayCategory: Array<String> = arrayOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         setSupportActionBar(binding.AddProductsToolbar)
+        spinnerArrayCategory= resources.getStringArray(R.array.categories)
+        initSpinners()
         val actionBar=supportActionBar
         if(actionBar!=null)
         {
@@ -172,11 +179,43 @@ class AddProducts : BaseActivity() {
             binding.EdProductPrice.text.toString().trim(){ it<= ' '},
             binding.EdProductDescription.text.toString().trim(){ it<= ' '},
             binding.EdProductQuantity.text.toString().trim(){ it<= ' '},
-            imageUrl
+            imageUrl,
+            category = binding.spnSelectProductCategory.selectedItem.toString()
 
         )
         FirestoreClass().addProduct(this,product)
 
 
     }
+
+    private fun initSpinners() {
+
+        val arrayAdapterGender = object : ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_1,
+            spinnerArrayCategory
+        ) {
+
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                val item = view as TextView
+                item.run {
+                    this.isSingleLine = false
+                }
+
+                return item
+            }
+        }
+
+        binding.spnSelectProductCategory.adapter = arrayAdapterGender
+
+    }
+
+
+
+
 }

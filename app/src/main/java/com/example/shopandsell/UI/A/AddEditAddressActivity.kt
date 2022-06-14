@@ -1,65 +1,128 @@
 package com.example.shopandsell.UI.A
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.shopandsell.Adapter.DashboardProductAdapter
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Address
-import com.example.shopandsell.Models.Product
+import com.example.shopandsell.Models.PincodeData
 import com.example.shopandsell.R
+import com.example.shopandsell.api.RetrofitInstance
 import com.example.shopandsell.databinding.ActivityAddEditAddressBinding
-import com.example.shopandsell.databinding.ActivityAddressBinding
 import com.example.shopandsell.utli.Constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddEditAddressActivity : BaseActivity() {
     private lateinit var binding: ActivityAddEditAddressBinding
     private var addressDetails: Address?=null
+    var verified=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditAddressBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         setSupportActionBar(binding.EditAddAddressToolbar)
-        val actionBar=supportActionBar
-        if(actionBar!=null)
-        {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-
-        }
-        if (intent.hasExtra(Constants.EXTRA_ADDRESS_DETAILS))
-        {
-           addressDetails=intent.getParcelableExtra(Constants.EXTRA_ADDRESS_DETAILS)!!
-
-
-        }
-        if(addressDetails!=null)
-        {
-            if(addressDetails!!.id.isNotEmpty())
+        binding.txtVerify.setOnClickListener {
+            if(TextUtils.isEmpty(binding.editAddAddressEdZipCode.text.toString().trim { it <= ' '}))
             {
-                binding.EditAddAddressToolbar.title="Edit Address"
+                showErrorSnackBar("Please Enter the zip code",true)
+            }
+            else
+            {
+
+                binding.progressVerify.visibility= View.VISIBLE
+                binding.btnSaveAddress.isEnabled=false
+                binding.txtVerify.text=""
+                val pincode = binding.editAddAddressEdZipCode.text.toString()
+                val data = checkPincode(pincode)
+                data.observe(this)
+                {
+
+                    binding.progressVerify.visibility= View.GONE
+                    binding.btnSaveAddress.isEnabled=true
+                    if (it!![0].PostOffice.isNullOrEmpty()) {
+                        binding.txtVerify.text = "Not Verified"
+                        binding.txtVerify.setTextColor(ContextCompat.getColor(this, R.color.Red))
+                        verified = 0
+                    } else {
+                        binding.txtVerify.text = "Verified"
+                        binding.txtVerify.setTextColor(ContextCompat.getColor(this, R.color.Green))
+                        verified = 1
+                        binding.stateCity.visibility=View.VISIBLE
+                        binding.state.text=it[0].PostOffice[0].State
+                        binding.city.text=it[0].PostOffice[0].District
+                    }
+
+                }
+            }
+
+
+
+
+        }
+        val textWatcher=object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                verified=0
+                binding.txtVerify.text="Verify"
+                binding.txtVerify.setTextColor(ContextCompat.getColor(this@AddEditAddressActivity, R.color.black))
+                binding.stateCity.visibility=View.GONE
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                verified=0
+                binding.txtVerify.text="Verify"
+                binding.txtVerify.setTextColor(ContextCompat.getColor(this@AddEditAddressActivity, R.color.black))
+                binding.stateCity.visibility=View.GONE
+
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                verified=0
+                binding.txtVerify.text="Verify"
+                binding.txtVerify.setTextColor(ContextCompat.getColor(this@AddEditAddressActivity, R.color.black))
+                binding.stateCity.visibility=View.GONE
+            }
+
+        }
+
+        binding.editAddAddressEdZipCode.addTextChangedListener(textWatcher)
+
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if (intent.hasExtra(Constants.EXTRA_ADDRESS_DETAILS)) {
+            addressDetails = intent.getParcelableExtra(Constants.EXTRA_ADDRESS_DETAILS)!!
+
+
+        }
+        if (addressDetails != null) {
+            binding.txtVerify.text = "Verified"
+            binding.txtVerify.setTextColor(ContextCompat.getColor(this, R.color.Green))
+            verified = 1
+            if (addressDetails!!.id.isNotEmpty()) {
+                binding.EditAddAddressToolbar.title = "Edit Address"
                 binding.editAddAddressEdFullName.setText(addressDetails?.name)
                 binding.editAddAddressEdPhoneNumber.setText(addressDetails?.mobileNumber)
                 binding.editAddAddressEdAddress.setText(addressDetails?.address)
                 binding.editAddAddressEdZipCode.setText(addressDetails?.zipCode)
                 binding.editAddAddressEdAdditionalInformation.setText(addressDetails?.additionalNote)
-                if(addressDetails?.type==Constants.HOME)
-                {
-                    binding.rbHomeAddress.isChecked=true
+                if (addressDetails?.type == Constants.HOME) {
+                    binding.rbHomeAddress.isChecked = true
 
-                }
-                else if(addressDetails?.type==Constants.OFFICE)
-                {
-                    binding.rbOtherAddress.isChecked=true
+                } else if (addressDetails?.type == Constants.OFFICE) {
+                    binding.rbOtherAddress.isChecked = true
 
-                }
-                else
-                {
-                    binding.rbOtherAddress.isChecked=true
+                } else {
+                    binding.rbOtherAddress.isChecked = true
 
                 }
             }
@@ -87,6 +150,10 @@ class AddEditAddressActivity : BaseActivity() {
             }
             TextUtils.isEmpty(binding.editAddAddressEdZipCode.text.toString().trim { it <= ' '})->{
                 showErrorSnackBar("Please Enter the zip code",true)
+                false
+            }
+            verified==0->{
+                showErrorSnackBar("Please Verify the zip code",true)
                 false
             }
             else ->
@@ -149,5 +216,30 @@ class AddEditAddressActivity : BaseActivity() {
         finish()
 
     }
+
+    fun checkPincode(pincode:String):MutableLiveData<ArrayList<PincodeData>?>
+    {
+            val pincodeData= MutableLiveData<ArrayList<PincodeData>?>()
+            RetrofitInstance("https://api.postalpincode.in/pincode/$pincode/").api.check().enqueue(
+                object :Callback<ArrayList<PincodeData>>
+                {
+                    override fun onResponse(call: Call<ArrayList<PincodeData>>, response: Response<ArrayList<PincodeData>>) {
+                        Log.d("ishan","${response.body()}")
+                        pincodeData.value=response.body()
+
+                    }
+
+                    override fun onFailure(call: Call<ArrayList<PincodeData>>, t: Throwable) {
+                        Log.d("ishan","error")
+                        pincodeData.value = null
+                    }
+                }
+            )
+
+        return pincodeData
+
+    }
+
+
 
 }

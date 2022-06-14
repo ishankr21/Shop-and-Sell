@@ -106,11 +106,11 @@ class CheckoutActivity : BaseActivity() {
             }
         }
         binding.tvCheckoutSubTotal.text= "Rs. $mSubTotal"
-        binding.tvCheckoutShippingCharge.text="Rs 10"
+        binding.tvCheckoutShippingCharge.text="Rs 100"
         if(mSubTotal>0)
         {
             binding.llCheckoutPlaceOrder.visibility= View.VISIBLE
-             mTotalAmount=mSubTotal+10.0
+             mTotalAmount=mSubTotal+100.0
             binding.tvCheckoutTotalAmount.text="Rs. ${mTotalAmount}"
 
 
@@ -132,7 +132,8 @@ class CheckoutActivity : BaseActivity() {
             mSubTotal.toString(),
             "100.0",
             mTotalAmount.toString(),
-            System.currentTimeMillis()
+            System.currentTimeMillis(),
+
 
 
 

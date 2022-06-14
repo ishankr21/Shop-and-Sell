@@ -7,13 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".UI.A.SplashScreen">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/appLogo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/splashimage"/>
+        app:lottie_rawRes="@raw/shopping_cart"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/appLogo"
+        android:id="@+id/appName"
+        android:text="Shop and Sell"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/appName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Shop and Sell"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

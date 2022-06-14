@@ -131,7 +131,18 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-
+    <Spinner
+        android:id="@+id/spnSelectProductCategory"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:padding="8dp"
+        android:background="@drawable/bg_spinner"
+        android:popupBackground="@color/white"
+        android:spinnerMode="dropdown"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

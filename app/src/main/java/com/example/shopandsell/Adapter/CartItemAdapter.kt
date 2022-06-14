@@ -1,5 +1,6 @@
 package com.example.shopandsell.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ class CartItemAdapter(val context: Context, var itemList:ArrayList<Cart_Item>,va
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item=itemList[position]
         if(holder is CartProductViewHolder)
@@ -36,6 +38,8 @@ class CartItemAdapter(val context: Context, var itemList:ArrayList<Cart_Item>,va
             holder.CartProductName.text=item.title
             holder.CartProductPrice.text="Rs."+item.price
             holder.CartQuantity.text=item.cart_quantity
+            holder.category.text="Category : "+item.category
+
             if(item.stock_quantity=="0")
             {
                 holder.decrease.visibility=View.GONE
@@ -71,6 +75,7 @@ class CartItemAdapter(val context: Context, var itemList:ArrayList<Cart_Item>,va
                     holder.decrease.visibility=View.GONE
                     holder.increase.visibility=View.GONE
                     holder.btnDelete.visibility=View.GONE
+                    holder.CartQuantity.visibility=View.GONE
                 }
 
             }
@@ -139,5 +144,6 @@ class CartProductViewHolder(view: View): RecyclerView.ViewHolder(view){
     val increase:ImageView=view.findViewById(R.id.btnIncreaseproduct)
     val decrease:ImageView=view.findViewById(R.id.btnRemoveProduct)
     var btnDelete:ImageView=view.findViewById(R.id.btnDeleteCartProduct)
+    var category:TextView=view.findViewById(R.id.productcartitemcategory)
 
 }

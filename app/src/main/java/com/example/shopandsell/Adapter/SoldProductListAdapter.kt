@@ -36,6 +36,7 @@ class SoldProductListAdapter(var context: Context, var soldProductsList:ArrayLis
             GlideLoadImage(context).loadProductPicture(soldProduct.image,holder.productImage)
             holder.productName.text=soldProduct.title
             holder.productPrice.text="Rs."+soldProduct.price
+            holder.category.text="Category : "+soldProduct.category
             holder.itemproductlayout.setOnClickListener {
                 val intent= Intent(context, SoldProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_SOLD_PRODUCT_DETAILS,soldProduct)
@@ -59,5 +60,6 @@ class newViewHolder(view: View): RecyclerView.ViewHolder(view) {
     var productPrice: TextView = view.findViewById(R.id.productitemprice)
     var itemproductlayout: ConstraintLayout = view.findViewById(R.id.itemProductLayout)
     var btnDelete: ImageView = view.findViewById(R.id.btnDeleteProduct)
+    var category:TextView=view.findViewById(R.id.productitemcategory)
 }
 

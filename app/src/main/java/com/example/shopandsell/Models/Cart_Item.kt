@@ -1,9 +1,12 @@
 package com.example.shopandsell.Models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity(tableName = "cart_item")
 data class Cart_Item(
 
     val user_id:String="",
@@ -14,5 +17,7 @@ data class Cart_Item(
     val image:String="",
     val cart_quantity:String="",
     var stock_quantity:String="",
-    var id:String=""
+    @PrimaryKey
+    var id:String="",
+    var category: String=""
 ) :Parcelable

@@ -5,14 +5,137 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.Fragments.DashBoardFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/DashBoardFragmentRecyclerView"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/DashBoardFragmentRecyclerView"
+        android:id="@+id/llCategories"
+        android:background="#FFF8FB"
+        android:visibility="gone"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/catFood"
+            android:background="@drawable/corners_cureved_background2"
+            app:layout_constraintRight_toLeftOf="@+id/catMobiles"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobiles"
+            app:layout_constraintLeft_toRightOf="@+id/catFood"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/catMobiles"
+            android:background="@drawable/corners_cureved_background2"
+            app:layout_constraintRight_toLeftOf="@+id/catElectronics"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electronics"
+            app:layout_constraintLeft_toRightOf="@+id/catMobiles"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/catToys"
+            android:id="@+id/catElectronics"
+            android:background="@drawable/corners_cureved_background2"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toys"
+            app:layout_constraintLeft_toRightOf="@+id/catElectronics"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/catToys"
+            android:background="@drawable/corners_cureved_background2"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Furniture"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catFood"
+            android:id="@+id/catFurniture"
+            android:background="@drawable/corners_cureved_background2"
+            app:layout_constraintRight_toLeftOf="@+id/catMobiles"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sports"
+            app:layout_constraintLeft_toRightOf="@+id/catFurniture"
+            app:layout_constraintTop_toBottomOf="@+id/catFood"
+            android:id="@+id/catSports"
+            android:background="@drawable/corners_cureved_background2"
+            app:layout_constraintRight_toLeftOf="@+id/catElectronics"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kitchen"
+            app:layout_constraintLeft_toRightOf="@+id/catSports"
+            app:layout_constraintTop_toBottomOf="@+id/catFood"
+            app:layout_constraintRight_toLeftOf="@+id/catToys"
+            android:id="@+id/catKitchen"
+            android:background="@drawable/corners_cureved_background2"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Makeup"
+            app:layout_constraintLeft_toRightOf="@+id/catKitchen"
+            app:layout_constraintTop_toBottomOf="@+id/catFood"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/catMakeup"
+            android:background="@drawable/corners_cureved_background2"
+            android:padding="14dp"
+            android:layout_margin="8dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/DashBoardFragmentRecyclerView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llCategories"
         app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"
         />
@@ -22,6 +145,7 @@
         android:text="No Products Available"
         android:textAlignment="center"
         android:textSize="25sp"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -12,9 +12,12 @@ import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Cart_Item
 import com.example.shopandsell.Models.Product
 import com.example.shopandsell.R
+import com.example.shopandsell.database.Database
 import com.example.shopandsell.databinding.ActivityCartBinding
 import com.example.shopandsell.databinding.ActivityViewDashBoardItemBinding
 import com.example.shopandsell.utli.Constants
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class  CartActivity : BaseActivity() {
     private lateinit var binding: ActivityCartBinding
@@ -133,6 +136,7 @@ class  CartActivity : BaseActivity() {
     }
     fun itemRemovedSuccess()
     {
+
         hideProgressBar()
         Toast.makeText(this,"Item Removed SuccessFully",Toast.LENGTH_LONG).show()
         getCartItemList()

@@ -8,6 +8,10 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -28,12 +32,14 @@ class ProductProfileActivity : BaseActivity() {
     private lateinit var productDetails: Product
     var SelectedProductImageURI: Uri?=null
     var productImageURL:String=""
+    var spinnerArrayCategory: Array<String> = arrayOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductProfileBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+        spinnerArrayCategory= resources.getStringArray(R.array.categories)
         setSupportActionBar(binding.ProductProfileToolbar)
         val actionBar=supportActionBar
         if(actionBar!=null)
@@ -79,6 +85,9 @@ class ProductProfileActivity : BaseActivity() {
 
             }
         }
+        initSpinners()
+
+
 
 
 
@@ -98,6 +107,7 @@ class ProductProfileActivity : BaseActivity() {
         binding.EdProductProfileDescription.setText(product.description)
         binding.EdProductProfilePrice.setText(product.price)
         binding.EdProductProfileQuantity.setText(product.stock_quantity)
+        binding.spnSelectProductCategory.setSelection(spinnerArrayCategory.indexOf(product.category))
 
 
     }
@@ -121,6 +131,7 @@ class ProductProfileActivity : BaseActivity() {
             productHashMap[Constants.IMAGE]=productImageURL
         }
 
+        productHashMap["category"]=binding.spnSelectProductCategory.selectedItem
 
         FirestoreClass().updateProductProfileData(this,productHashMap,productDetails.product_id)
 
@@ -147,6 +158,11 @@ class ProductProfileActivity : BaseActivity() {
             TextUtils.isEmpty(binding.EdProductProfileQuantity.text.toString().trim{it <= ' '})->
             {
                 showErrorSnackBar("Please Enter The Product Quantity",true)
+                false
+            }
+            binding.spnSelectProductCategory.selectedItemPosition==0->
+            {
+                showErrorSnackBar("Please Select The Product Category",true)
                 false
             }
 
@@ -211,4 +227,32 @@ class ProductProfileActivity : BaseActivity() {
         productImageURL=imageURL
         uploadProductDetails()
     }
+
+    private fun initSpinners() {
+
+        val arrayAdapterGender = object : ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_1,
+            spinnerArrayCategory
+        ) {
+
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                val item = view as TextView
+                item.run {
+                    this.isSingleLine = false
+                }
+
+                return item
+            }
+        }
+
+        binding.spnSelectProductCategory.adapter = arrayAdapterGender
+
+    }
+
 }
