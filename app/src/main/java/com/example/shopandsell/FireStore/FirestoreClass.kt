@@ -369,7 +369,11 @@ class FirestoreClass {
                     is CartActivity -> {
                         activity.onSuccessfullyGettingTheCartItemList(cartItemsList)
                     }
-                    is CheckoutActivity ->
+                    is MakePayment ->
+                    {
+                        activity.successCartItemsList(cartItemsList)
+                    }
+                    is CheckoutActivity->
                     {
                         activity.successCartItemsList(cartItemsList)
                     }
@@ -453,6 +457,10 @@ class FirestoreClass {
                     {
                         is CartActivity->{
                             activity.successProductListFromFireStore(productslist)
+                        }
+                        is MakePayment->
+                        {
+                            activity.successProductsListFromFireStore(productslist)
                         }
                         is CheckoutActivity->
                         {
@@ -641,7 +649,7 @@ class FirestoreClass {
             }
     }
 
-    fun addOrder(activity: CheckoutActivity,orderInfo:Order)
+    fun addOrder(activity: MakePayment,orderInfo:Order)
     {
         mFirestore.collection(Constants.ORDERS)
             .document()
@@ -664,7 +672,7 @@ class FirestoreClass {
                 )
             }
     }
-    fun updateAllDetails(activity:CheckoutActivity,cartList:ArrayList<Cart_Item>,order:Order)
+    fun updateAllDetails(activity:MakePayment,cartList:ArrayList<Cart_Item>,order:Order)
     {
             val writeBatch = mFirestore.batch()
         for(cart in cartList)

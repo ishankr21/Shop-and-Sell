@@ -11,9 +11,12 @@
         android:roundIcon="@drawable/preview"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopAndSell">
-        <activity android:name=".UI.A.SoldProductDetailsActivity"
-            android:theme="@style/Theme.ShopAndSell2"
-            />
+        <activity
+            android:name=".UI.A.MakePayment"
+            android:theme="@style/Theme.ShopAndSell2" />
+        <activity
+            android:name=".UI.A.SoldProductDetailsActivity"
+            android:theme="@style/Theme.ShopAndSell2" />
         <activity
             android:name=".UI.A.OrderDetailActivity"
             android:theme="@style/Theme.ShopAndSell2" />

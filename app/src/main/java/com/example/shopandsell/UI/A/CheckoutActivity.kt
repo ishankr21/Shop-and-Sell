@@ -40,7 +40,7 @@ class CheckoutActivity : BaseActivity() {
         setContentView(view)
         setSupportActionBar(binding.toolbarCheckoutActivity)
         val actionBar=supportActionBar
-        createNotificationChannel()
+
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -122,7 +122,6 @@ class CheckoutActivity : BaseActivity() {
     }
     private fun placeAnOrder()
     {
-        showProgressDialog()
         mOrderDetails= Order(
             FirestoreClass().getCurrentUserID(),
             CartItemList,
@@ -137,41 +136,17 @@ class CheckoutActivity : BaseActivity() {
 
 
 
-        )
-        FirestoreClass().addOrder(this,mOrderDetails)
-
-    }
-    fun orderUploadSuccess()
-    {
-        val notification= NotificationCompat.Builder(this,CHANNEL_ID)
-            .setContentTitle("Order Placed!!")
-            .setContentText("Congratulations!! Your order was successfully placed.")
-            .setSmallIcon(R.drawable.ic_baseline_shopping_cart_24)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .build()
-        val notificationManager= NotificationManagerCompat.from(this)
-        notificationManager.notify(NOTIFICATION_ID,notification)
-        FirestoreClass().updateAllDetails(this,CartItemList ,mOrderDetails)
-
-    }
-    fun allDetailsUpdateSuccessfully()
-    {
-        hideProgressBar()
-        Toast.makeText(this,"Order Placed SuccessFully!",Toast.LENGTH_LONG).show()
-        val intent= Intent(this,DashBoardActivity::class.java)
-        intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            )
+        val intent=Intent(this,MakePayment::class.java)
+        intent.putExtra("orderDetails",mOrderDetails)
         startActivity(intent)
-        finish()
+
+
+
 
     }
-    fun createNotificationChannel()
-    {
-        val channel = NotificationChannel(CHANNEL_ID,CHANNEL_NAME,
-        NotificationManager.IMPORTANCE_DEFAULT).apply {
-            enableLights(true)
-        }
-        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.createNotificationChannel(channel)
-    }
+
+
+
 
 }
