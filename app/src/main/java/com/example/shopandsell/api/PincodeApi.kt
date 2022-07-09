@@ -1,5 +1,7 @@
 package com.example.shopandsell.api
 
+import `in`.indiahaat.beans.razorpay.RazorpayOrderRequest
+import `in`.indiahaat.beans.razorpay.RazorpayOrderResponse
 import com.example.shopandsell.Models.CaptchaCheckContent
 import com.example.shopandsell.Models.CaptchaCheckResponse
 import com.example.shopandsell.Models.CaptchaGetResponse
@@ -24,5 +26,9 @@ interface PincodeApi {
         @Body
         captchaCheckContent: CaptchaCheckContent
     ):Call<CaptchaCheckResponse>
+
+    @Headers("content-type: application/json")
+    @POST("/v1/orders")
+    fun getOrderDetail(@Body order: RazorpayOrderRequest, @Header("Authorization") auth: String): Call<RazorpayOrderResponse>
 
 }

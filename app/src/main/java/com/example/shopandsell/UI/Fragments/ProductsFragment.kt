@@ -1,21 +1,15 @@
     package com.example.shopandsell.UI.Fragments
 
     import android.content.Intent
-    import android.opengl.Visibility
     import android.os.Bundle
     import android.view.*
-    import androidx.fragment.app.Fragment
-    import android.widget.TextView
     import android.widget.Toast
-    import androidx.lifecycle.ViewModelProvider
     import androidx.recyclerview.widget.LinearLayoutManager
     import com.example.shopandsell.Adapter.ProductAdapter
     import com.example.shopandsell.FireStore.FirestoreClass
     import com.example.shopandsell.Models.Product
     import com.example.shopandsell.R
     import com.example.shopandsell.UI.A.AddProducts
-    import com.example.shopandsell.UI.A.SettingsActivity
-    import com.example.shopandsell.databinding.FragmentDashBoardBinding
     import com.example.shopandsell.databinding.FragmentProductsBinding
 
 

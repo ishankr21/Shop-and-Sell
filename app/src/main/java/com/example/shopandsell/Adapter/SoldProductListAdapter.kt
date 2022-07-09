@@ -9,12 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shopandsell.Models.Product
 import com.example.shopandsell.Models.SoldProducts
 import com.example.shopandsell.R
-import com.example.shopandsell.UI.A.ProductProfileActivity
 import com.example.shopandsell.UI.A.SoldProductDetailsActivity
-import com.example.shopandsell.UI.Fragments.ProductsFragment
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage
 

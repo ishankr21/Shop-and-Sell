@@ -1,13 +1,11 @@
 package com.example.shopandsell.UI.A
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopandsell.Adapter.CartItemAdapter
 import com.example.shopandsell.Models.Order
 import com.example.shopandsell.R
-import com.example.shopandsell.databinding.ActivityAddEditAddressBinding
 import com.example.shopandsell.databinding.ActivityOrderDetailBinding
 import com.example.shopandsell.utli.Constants
 import java.text.SimpleDateFormat
@@ -39,6 +37,7 @@ class OrderDetailActivity : BaseActivity() {
     private fun setupUI(order:Order)
     {
         binding.tvOrderDetailsId.text=order.title
+        binding.modeCod.text=order.mode
         val dateFormat = "dd MMM yyyy HH:mm"
         val formatter= SimpleDateFormat(dateFormat, Locale.getDefault())
         val calendar:Calendar = Calendar.getInstance()

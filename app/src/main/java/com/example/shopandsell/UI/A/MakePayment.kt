@@ -1,5 +1,8 @@
 package com.example.shopandsell.UI.A
 
+import `in`.indiahaat.beans.razorpay.RazorpayOrderRequest
+import `in`.indiahaat.beans.razorpay.RazorpayOrderResponse
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,24 +11,30 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.*
 import com.example.shopandsell.api.RetrofitInstance
 import com.example.shopandsell.databinding.ActivityMakePaymentBinding
+import com.razorpay.Checkout
+import com.razorpay.PaymentResultListener
+import com.squareup.okhttp.Credentials
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MakePayment : BaseActivity() {
+class MakePayment : BaseActivity(), PaymentResultListener {
 
     private lateinit var binding: ActivityMakePaymentBinding
     var uuid:String=""
     var orderDetails=Order()
     private lateinit var CartItemList:ArrayList<Cart_Item>
     private lateinit var ProductsList:ArrayList<Product>
+
+    private var orderResponse: RazorpayOrderResponse? = null
+    val razrPayBaseUrl="https://api.razorpay.com"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMakePaymentBinding.inflate(layoutInflater)
@@ -74,7 +83,7 @@ class MakePayment : BaseActivity() {
                 {
                     showErrorSnackBar("Success",false)
                            showProgressDialog()
-
+                    orderDetails.mode="Cash on delivery"
                         FirestoreClass().addOrder(this,orderDetails)
                 }
                 else
@@ -82,6 +91,19 @@ class MakePayment : BaseActivity() {
                     showErrorSnackBar("Wrong Captcha",true)
                 }
             }
+        }
+        Checkout.preload(applicationContext)
+        binding.onlinePayment.setOnClickListener {
+           val razorpayOrderRequest=RazorpayOrderRequest(
+               amount = (orderDetails.total_amount.toDouble().toInt()*100),
+
+
+           )
+            getOrderDetail(razorpayOrderRequest).observe(this)
+            {
+                startPayment(it!!)
+            }
+
         }
     }
 
@@ -108,7 +130,7 @@ class MakePayment : BaseActivity() {
 
     }
 
-    fun getCaptcha(): MutableLiveData<CaptchaGetResponse?>
+    private fun getCaptcha(): MutableLiveData<CaptchaGetResponse?>
     {
         val captchaGetResponse= MutableLiveData<CaptchaGetResponse?>()
         RetrofitInstance("https://captcha-api.akshit.me/v2/").api.getCaptcha().enqueue(
@@ -180,4 +202,67 @@ class MakePayment : BaseActivity() {
 
 
     }
+
+    private fun startPayment(razorpayOrderResponse: RazorpayOrderResponse) {
+
+        val activity: Activity = this
+        val co = Checkout()
+        co.setKeyID("rzp_test_e5b9m2OpP4LYlx");
+        try {
+            val options = JSONObject()
+            options.put("name","Shop and Sell pvt. ltd")
+            options.put("description","Payment for shopping")
+
+            options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+            options.put("theme.color", "#3399cc");
+            options.put("currency",razorpayOrderResponse.currency);
+            options.put("order_id", razorpayOrderResponse.id);
+            options.put("amount",razorpayOrderResponse.amount)
+
+            val retryObj = JSONObject()
+            retryObj.put("enabled", true);
+            retryObj.put("max_count", 4);
+            options.put("retry", retryObj);
+
+            val prefill = JSONObject()
+            prefill.put("email","gaurav.kumar@example.com")
+            prefill.put("contact","7061021557")
+
+            options.put("prefill",prefill)
+            co.open(activity,options)
+        }catch (e: Exception){
+            Toast.makeText(activity,"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
+    }
+
+    override fun onPaymentSuccess(p0: String?) {
+        showErrorSnackBar("Success",false)
+        showProgressDialog()
+        orderDetails.mode="Online Payment"
+        FirestoreClass().addOrder(this,orderDetails)
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?) {
+        Toast.makeText(this,"Failure $p1",Toast.LENGTH_LONG).show()
+    }
+
+    fun getOrderDetail(order: RazorpayOrderRequest): MutableLiveData<RazorpayOrderResponse?> {
+        val orderLiveData = MutableLiveData<RazorpayOrderResponse?>()
+        val credentials = Credentials.basic("rzp_test_e5b9m2OpP4LYlx","JalfWPF2D8990NfDvovOlfGk")
+        RetrofitInstance(razrPayBaseUrl).api.getOrderDetail(order, credentials)
+            .enqueue(object : Callback<RazorpayOrderResponse> {
+                override fun onResponse(call: Call<RazorpayOrderResponse>, response: Response<RazorpayOrderResponse>) {
+                    orderLiveData.value = response.body()
+                    Log.d("ishan","${response.body()}")
+                }
+
+                override fun onFailure(call: Call<RazorpayOrderResponse>, t: Throwable) {
+                    orderLiveData.value = null
+                }
+
+            })
+        return orderLiveData
+    }
+
 }

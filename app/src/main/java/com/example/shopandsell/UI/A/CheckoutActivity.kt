@@ -1,15 +1,8 @@
 package com.example.shopandsell.UI.A
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopandsell.Adapter.CartItemAdapter
 import com.example.shopandsell.FireStore.FirestoreClass
@@ -17,8 +10,6 @@ import com.example.shopandsell.Models.Address
 import com.example.shopandsell.Models.Cart_Item
 import com.example.shopandsell.Models.Order
 import com.example.shopandsell.Models.Product
-import com.example.shopandsell.R
-import com.example.shopandsell.databinding.ActivityAddProductsBinding
 import com.example.shopandsell.databinding.ActivityCheckoutBinding
 import com.example.shopandsell.utli.Constants
 

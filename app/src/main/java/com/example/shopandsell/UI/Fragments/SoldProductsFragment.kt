@@ -1,17 +1,13 @@
 package com.example.shopandsell.UI.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.shopandsell.Adapter.ProductAdapter
 import com.example.shopandsell.Adapter.SoldProductListAdapter
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.SoldProducts
-import com.example.shopandsell.R
-import com.example.shopandsell.databinding.FragmentProductsBinding
 import com.example.shopandsell.databinding.FragmentSoldProductsBinding
 
 

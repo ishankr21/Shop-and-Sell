@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -17,12 +16,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Product
-import com.example.shopandsell.Models.User
 import com.example.shopandsell.R
-import com.example.shopandsell.UI.Fragments.ProductsFragment
-import com.example.shopandsell.databinding.ActivityAddProductsBinding
 import com.example.shopandsell.databinding.ActivityProductProfileBinding
-import com.example.shopandsell.databinding.ActivityUserProflieBinding
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage
 import java.io.IOException

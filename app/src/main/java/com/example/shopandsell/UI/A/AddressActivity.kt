@@ -1,20 +1,15 @@
 package com.example.shopandsell.UI.A
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shopandsell.Adapter.AddressAdapter
-import com.example.shopandsell.Adapter.DashboardProductAdapter
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Address
-import com.example.shopandsell.R
 import com.example.shopandsell.databinding.ActivityAddressBinding
-import com.example.shopandsell.databinding.ActivitySettingsBinding
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.SwipeToDelete
 import com.example.shopandsell.utli.SwipeToEdit
@@ -57,14 +52,18 @@ class AddressActivity : BaseActivity(){
             binding.AddressRecyclerView.visibility= View.VISIBLE
             binding.AddressRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.AddressRecyclerView.setHasFixedSize(true)
-            val adapter= AddressAdapter(this,AddressList,selectedAddress)
+            val adapter= com.example.shopandsell.Adapter.AddressAdapter(
+                this,
+                AddressList,
+                selectedAddress
+            )
             binding.AddressRecyclerView.adapter=adapter
             if(!selectedAddress)
             {
                 val editBySwipe=object : SwipeToEdit(this)
                 {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        val adapter=binding.AddressRecyclerView.adapter as AddressAdapter
+                        val adapter=binding.AddressRecyclerView.adapter as com.example.shopandsell.Adapter.AddressAdapter
                         adapter.notifyEditItem(this@AddressActivity,viewHolder.adapterPosition)
                     }
                 }
@@ -74,7 +73,7 @@ class AddressActivity : BaseActivity(){
                 val deleteBySwipe=object : SwipeToDelete(this)
                 {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        val adapter=binding.AddressRecyclerView.adapter as AddressAdapter
+                        val adapter=binding.AddressRecyclerView.adapter as com.example.shopandsell.Adapter.AddressAdapter
                         showProgressDialog()
                         FirestoreClass().deleteAddressItem(this@AddressActivity,AddressList[viewHolder.adapterPosition].id)
                     }

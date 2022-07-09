@@ -6,30 +6,26 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Address
-import com.example.shopandsell.Models.Cart_Item
 import com.example.shopandsell.R
 import com.example.shopandsell.UI.A.AddEditAddressActivity
 import com.example.shopandsell.UI.A.CheckoutActivity
 import com.example.shopandsell.utli.Constants
-import org.w3c.dom.Text
 
 class AddressAdapter(private val context: Context, var itemList:ArrayList<Address>,var selectedAddress:Boolean):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return AddressViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.adrdress_item,parent,false)
+        return com.example.shopandsell.Adapter.AddressViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.adrdress_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item=itemList[position]
-        if(holder is AddressViewHolder)
+        if(holder is com.example.shopandsell.Adapter.AddressViewHolder)
         {
             holder.address.text=item.address
             holder.fullName.text=item.name

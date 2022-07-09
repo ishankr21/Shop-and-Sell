@@ -1,23 +1,16 @@
 package com.example.shopandsell.UI.A
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopandsell.Adapter.CartItemAdapter
-import com.example.shopandsell.Adapter.DashboardProductAdapter
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Cart_Item
 import com.example.shopandsell.Models.Product
-import com.example.shopandsell.R
-import com.example.shopandsell.database.Database
 import com.example.shopandsell.databinding.ActivityCartBinding
-import com.example.shopandsell.databinding.ActivityViewDashBoardItemBinding
 import com.example.shopandsell.utli.Constants
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
 class  CartActivity : BaseActivity() {
     private lateinit var binding: ActivityCartBinding

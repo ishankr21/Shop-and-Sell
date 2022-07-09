@@ -12,9 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopandsell.Models.Product
 import com.example.shopandsell.R
-import com.example.shopandsell.UI.A.ProductProfileActivity
 import com.example.shopandsell.UI.A.ViewDashBoardItem
-import com.example.shopandsell.UI.Fragments.DashBoardFragment
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage
 

@@ -16,13 +16,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Product
-import com.example.shopandsell.Models.User
 import com.example.shopandsell.R
 import com.example.shopandsell.databinding.ActivityAddProductsBinding
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import java.io.IOException
 
 class AddProducts : BaseActivity() {

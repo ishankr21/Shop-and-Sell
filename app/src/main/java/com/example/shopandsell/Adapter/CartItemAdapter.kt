@@ -2,22 +2,17 @@ package com.example.shopandsell.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.Cart_Item
-import com.example.shopandsell.Models.Product
 import com.example.shopandsell.R
 import com.example.shopandsell.UI.A.CartActivity
-import com.example.shopandsell.UI.A.ProductProfileActivity
-import com.example.shopandsell.UI.Fragments.ProductsFragment
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage
 

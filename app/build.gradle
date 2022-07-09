@@ -5,7 +5,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
-
+repositories {
+    mavenCentral()
+}
 android {
     compileSdkVersion 30
 

@@ -1,13 +1,9 @@
 package com.example.shopandsell.UI.A
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.User
-import com.example.shopandsell.R
-import com.example.shopandsell.databinding.ActivityLoginBinding
 import com.example.shopandsell.databinding.ActivitySettingsBinding
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage

@@ -2,11 +2,7 @@ package com.example.shopandsell.UI.A
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.example.shopandsell.Models.Address
 import com.example.shopandsell.Models.SoldProducts
-import com.example.shopandsell.R
-import com.example.shopandsell.databinding.ActivityAddEditAddressBinding
 import com.example.shopandsell.databinding.ActivitySoldProductDetailsBinding
 import com.example.shopandsell.utli.Constants
 import com.example.shopandsell.utli.GlideLoadImage

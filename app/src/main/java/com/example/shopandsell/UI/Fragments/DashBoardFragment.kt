@@ -1,13 +1,10 @@
 package com.example.shopandsell.UI.Fragments
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,13 +14,10 @@ import com.example.shopandsell.Models.Cart_Item
 import com.example.shopandsell.Models.Product
 import com.example.shopandsell.R
 import com.example.shopandsell.UI.A.CartActivity
-import com.example.shopandsell.UI.A.MainActivity
 import com.example.shopandsell.UI.A.SettingsActivity
 import com.example.shopandsell.dao.cart_item_dao
 import com.example.shopandsell.database.Database
 import com.example.shopandsell.databinding.FragmentDashBoardBinding
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
 
 class DashBoardFragment : BaseFragment() {
