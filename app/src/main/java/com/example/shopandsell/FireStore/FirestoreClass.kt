@@ -124,6 +124,10 @@ class FirestoreClass {
                     {
                         activity.onUserReceived(user)
                     }
+                    is MakePayment->
+                    {
+                        activity.onUserAaya(user)
+                    }
                 }
             }
             .addOnFailureListener {
@@ -134,6 +138,10 @@ class FirestoreClass {
                         activity.hideProgressBar()
                     }
                     is SettingsActivity->
+                    {
+                        activity.hideProgressBar()
+                    }
+                    is MakePayment->
                     {
                         activity.hideProgressBar()
                     }

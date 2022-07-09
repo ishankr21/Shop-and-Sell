@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.shopandsell.FireStore.FirestoreClass
 import com.example.shopandsell.Models.*
+import com.example.shopandsell.R
 import com.example.shopandsell.api.RetrofitInstance
 import com.example.shopandsell.databinding.ActivityMakePaymentBinding
+import com.example.shopandsell.utli.GlideLoadImage
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import com.squareup.okhttp.Credentials
@@ -32,7 +34,7 @@ class MakePayment : BaseActivity(), PaymentResultListener {
     var orderDetails=Order()
     private lateinit var CartItemList:ArrayList<Cart_Item>
     private lateinit var ProductsList:ArrayList<Product>
-
+    var userDetails=User()
     private var orderResponse: RazorpayOrderResponse? = null
     val razrPayBaseUrl="https://api.razorpay.com"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +47,7 @@ class MakePayment : BaseActivity(), PaymentResultListener {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         orderDetails=intent.getParcelableExtra<Order>("orderDetails")!!
-
+        getUserDetails()
         getProductList()
         binding.toolbarMakePayment.setNavigationOnClickListener { onBackPressed() }
         binding.imgRefreshCaptcha.setOnClickListener {
@@ -206,8 +208,9 @@ class MakePayment : BaseActivity(), PaymentResultListener {
     private fun startPayment(razorpayOrderResponse: RazorpayOrderResponse) {
 
         val activity: Activity = this
+        val key=getString(R.string.razorpyakey)
         val co = Checkout()
-        co.setKeyID("rzp_test_e5b9m2OpP4LYlx");
+        co.setKeyID(key);
         try {
             val options = JSONObject()
             options.put("name","Shop and Sell pvt. ltd")
@@ -225,8 +228,8 @@ class MakePayment : BaseActivity(), PaymentResultListener {
             options.put("retry", retryObj);
 
             val prefill = JSONObject()
-            prefill.put("email","gaurav.kumar@example.com")
-            prefill.put("contact","7061021557")
+            prefill.put("email",userDetails.email)
+            prefill.put("contact",userDetails.mobile.toString())
 
             options.put("prefill",prefill)
             co.open(activity,options)
@@ -264,5 +267,16 @@ class MakePayment : BaseActivity(), PaymentResultListener {
             })
         return orderLiveData
     }
+    fun getUserDetails()
+    {
 
+        FirestoreClass().getUserDetails(this)
+    }
+    fun onUserAaya(user:User)
+    {
+        hideProgressBar()
+         userDetails = user
+
+
+    }
 }
